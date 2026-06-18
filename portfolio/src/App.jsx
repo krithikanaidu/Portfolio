@@ -1,26 +1,70 @@
+import { FaGithub } from "react-icons/fa";
+import CursorSparks from './components/CursorSparks'
 import './App.css'
 
 function App() {
+
   return (
-    <div className="center">
-      <div className="title">
-        <h1>This is my portfolio.</h1>
+    <div className="main">
+       <CursorSparks />
+      <div className="center">
+
+        {/* NAVBAR */}
+        <nav className="navbar">
+          <div className="navbar-left">
+            <a href="#home">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#blogs">Blogs</a>
+          </div>
+          <div className="navbar-right">
+            <a href="https://github.com/krithikanaidu">github</a>
+            <a href="https://www.linkedin.com/in/krithika-naidu-9a400b299/">linkedin</a>
+            <a href="">resume</a>
+            <a href="mailto:krithikanaidu88@gmail.com">mail</a>
+            <a href="https://substack.com/@justanotherdork">newsletter/substack</a>
+          </div>
+        </nav>
+
+        {/* HERO */}
+        <div className="hero">
+          <div className="name">
+            <p>Krithika Naidu</p>
+          </div>
+          <div className="tagline">
+            <p>just a dorky developer</p>
+          </div>
+          <div className="bio">
+            <p>an aspiring developer trying to build systems.</p>
+          </div>
+          <div className="links">
+            <p><em>links paste here</em></p>
+          </div>
+        </div>
+
+        {/* EXPERIENCE */}
+        <div className="Experience">
+          <h3>Experience</h3>
+        </div>
+
+        {/* PROJECTS */}
+        <div className="Projects">
+          <h3>Projects</h3>
+        </div>
+
+        {/* SKILLS */}
+        <div className="Skills">
+          <h3>Skills</h3>
+        </div>
+
+        {/* FOOTER */}
+        <div className="Footer">
+          <h3>Footer</h3>
+        </div>
+
       </div>
-
-    <div className="content">
-      <article>
-        <h1>My First Component</h1>
-        <ol>
-          <li>Components : UI Building blocks</li>
-          <li>Components are integral part in react</li>
-          <li>Using a Component</li>
-        </ol>
-      </article>
-    </div>
     </div>
 
-    
-  );
+  )
 }
 
-export default App;
+export default App

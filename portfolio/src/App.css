@@ -1,3 +1,186 @@
+/* ─── IMPORT FONT ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* ─── CSS VARIABLES ───────────────────────────────────────────── */
+:root {
+  --bg:           #0d0d0d;
+  --text:         #e4e4e7;
+  --muted:        #a1a1aa;
+  --accent:       #e05c2a;
+  --border:       #1f1f1f;
+  --max-width:    700px;
+  --font:         'Inter', sans-serif;
+  --font-heading: 'Instrument Serif', serif;
+}
+
+/* ─── SELECTION COLOR ─────────────────────────────────────────── */
+::selection {
+  color: #ffffff;
+  background-color: #e05c2a;
+}
+
+/* ─── RESET ───────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── BASE ────────────────────────────────────────────────────── */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--text);
+}
+
+/* ─── LAYOUT ──────────────────────────────────────────────────── */
+.main {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg);
+}
+
 .center {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ─── NAVBAR ──────────────────────────────────────────────────── */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 80px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.navbar-left span {
+  color: var(--accent);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+}
+
+.navbar-left a {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.navbar-left a:hover {
+  color: var(--text);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-right a {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.navbar-right a:hover {
+  color: var(--text);
+}
+
+/* ─── HERO ────────────────────────────────────────────────────── */
+.hero {
+  margin-bottom: 100px;
+}
+
+.hero .name p {
+  font-family: var(--font-heading);
+  font-size: 42px;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1.15;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.hero .tagline p {
+  font-size: 16px;
+  color: var(--text);
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.hero .bio p {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 520px;
+  margin-bottom: 28px;
+}
+
+.hero .links p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ─── SECTIONS (shared) ───────────────────────────────────────── */
+.Experience,
+.Projects,
+.Skills,
+.Footer {
+  margin-bottom: 100px;
+}
+
+.Experience h3,
+.Projects h3,
+.Skills h3,
+.Footer h3 {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 32px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ─── CURSOR SPARK EFFECT ─────────────────────────────────────── */
+.spark {
+  position: fixed;
+  pointer-events: none;
+  font-size: 12px;
+  color: #e05c2a;
+  user-select: none;
+  z-index: 9999;
+  animation: spark-burst 600ms ease-out forwards;
+  /* each spark gets --dx and --dy set via JS for direction */
+}
+
+@keyframes spark-burst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(0.4);
+  }
 }
