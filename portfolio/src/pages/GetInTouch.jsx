@@ -1,3 +1,5 @@
+import '../style/App.css'
+
 function GetInTouch() {
   return (
     <div className="contact">
