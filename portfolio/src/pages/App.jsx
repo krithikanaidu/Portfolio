@@ -8,33 +8,47 @@ import { Link } from 'react-router-dom'
 import CursorSparks from '../components/CursorSparks'
 import GetInTouch from '../pages/GetInTouch'
 import ExperienceItem from '../components/ExperienceItem'
+import SkillsSection from '../components/SkillsSection'
+import GithubActivity from '../components/GithubActivity'
 import idmsLogo from '../assets/idms_logo.jpg'
 import csiLogo from '../assets/csi_logo.PNG'
 import '../style/App.css'
 
-  const experiences = [
-    {
-      logo: idmsLogo,
-      company: "IDMS",
-      role: "Developer",
-      location: "Maharashtra, India",
-      duration: "Jun 2025 – Sep 2025",
-      bullets: [
-        "Built a real-time multi-player streaming service integrated with VR headsets.",
-        "Worked on TCP based Gateway for data transfer from ESP32 to VR headset.",
-      ],
-      tech: ["Python", "FastAPI", "Node.js / Express.js", "TypeScript", "PostgreSQL", "WebSockets", "WebRTC", "SQLite"],
-    },
-    {
-      logo: csiLogo,
-      company: "CSI (Computers Society Of India)",
-      role: "Commitee Member / Finance Team",
-      location: "Maharashtra, India",
-      duration: "Aug 2025 – Jan 2026",
-      bullets: [],
-      tech: [],
-    },
-  ]
+const experiences = [
+  {
+    logo: idmsLogo,
+    company: "IDMS Infotech",
+    role: "Web Developer Intern",
+    location: "Mumbai, Maharashtra, India",
+    duration: "Jun 2025 – Sept 2025",
+    bullets: [
+      "Architected a full-stack MERN support dashboard, designing Node.js/Express RESTful APIs, managing MongoDB databases, and implementing Redux Toolkit.",
+      "Delivered a custom e-commerce platform using Wix Studio and Velo (JavaScript), integrating third-party APIs to automate order fulfillment.",
+      "Designed accessible, mobile-responsive interfaces using Figma and drove full-SDLC project deployment within an Agile environment."
+    ],
+    tech: [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Redux Toolkit",
+      "JavaScript",
+      "Wix Studio",
+      "Figma"
+    ],
+  },
+  {
+    logo: csiLogo,
+    company: "CSI (Computer Society Of India)",
+    role: "Core Tech & Management Team Member",
+    location: "Maharashtra, India",
+    duration: "Aug 2025 – Jan 2026",
+    bullets: [
+      "Organized and successfully conducted a major technical event for 400+ students as an active member of the core decision and organizing team.",
+      "Spearheaded marketing initiatives and successfully secured ₹15,000 in event funding through sponsorships."
+    ],
+    tech: ["Event Management", "Marketing", "Sponsorship Acquisition", "Cross-functional Leadership"],
+  },
+];
 
 
 function App() {
@@ -50,7 +64,7 @@ function App() {
           <div className="navbar-left">
             <a href="/">Home</a>
             <a href="/">Projects</a>
-            <a href="/">Blogs</a>
+            <a href="https://substack.com/@justanotherdork">Blogs</a>
           </div>
           <div className="navbar-right">
             <a href="https://github.com/krithikanaidu" title="Github"><FaGithub /></a>
@@ -108,7 +122,10 @@ function Home() {
       {/* SKILLS */}
       <div className="Skills">
         <h3>Skills</h3>
+        <SkillsSection />
       </div>
+
+      <GithubActivity />
 
       {/* FOOTER */}
       <div className="Footer">

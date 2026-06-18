@@ -181,14 +181,14 @@ a:hover {
 .Projects h3,
 .Skills h3,
 .Footer h3 {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 32px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
+  font-size: 20px;          /* bigger, like the screenshot */
+  font-weight: 400;         /* lighter weight */
+  color: var(--text);       /* white-ish, not muted */
+  text-transform: none;     /* no uppercase */
+  letter-spacing: 0;
+  margin-bottom: 20px;
+  padding-bottom: 0;        /* no bottom padding */
+  border-bottom: none; 
 }
 
 /* ─── CURSOR SPARK EFFECT ─────────────────────────────────────── */
@@ -371,4 +371,55 @@ a:hover {
 .tech-badge:hover {
   color: var(--accent);
   border-color: var(--accent);
+}
+
+/* ─── SKILLS ──────────────────────────────────────────────────── */
+
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skill-row {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.skill-category {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.skill-divider {
+  color: var(--muted);
+}
+
+.skill-items {
+  color: var(--muted);
+}
+
+/* ─── GITHUB ACTIVITY ─────────────────────────────────────────── */
+.github-activity {
+  margin-bottom: 100px;
+  overflow: hidden;
+}
+
+.github-activity h3 {
+  font-size: 20px;          /* bigger, like the screenshot */
+  font-weight: 400;         /* lighter weight */
+  color: var(--text);       /* white-ish, not muted */
+  text-transform: none;     /* no uppercase */
+  letter-spacing: 0;        /* no tracking */
+  margin-bottom: 20px;
+  padding-bottom: 0;        /* no bottom padding */
+  border-bottom: none;      /* no divider line */
+}
+
+.github-chart {
+  width: 100%;
+  border-radius: 4px;
+  opacity: 0.9;
+  mix-blend-mode: lighten;  /* blends white bg of SVG into dark page */
 }
