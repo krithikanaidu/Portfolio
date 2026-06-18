@@ -1,4 +1,8 @@
 import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { IoDocumentAttachSharp } from "react-icons/io5";
+import { IoMail } from "react-icons/io5";
+import { MdNewspaper } from "react-icons/md";
 import CursorSparks from './components/CursorSparks'
 import './App.css'
 
