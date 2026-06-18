@@ -43,7 +43,7 @@ a {
 }
 
 a:hover {
-  color: var(--text);
+  color: var(--accent);
 }
 
 /* ─── LAYOUT ──────────────────────────────────────────────────── */
@@ -88,7 +88,7 @@ a:hover {
 }
 
 .navbar-left a:hover {
-  color: var(--text);
+  color: var(--accent);
 }
 
 .navbar-right {
@@ -99,11 +99,16 @@ a:hover {
 
 .navbar-right a {
   font-size: 13px;
-  color: var(--muted);
+  color: var(--text);
 }
 
 .navbar-right a:hover {
-  color: var(--text);
+  color: var(--accent);
+}
+
+.navbar-right a svg {
+  width: 16px;
+  height: 16px;
 }
 
 /* ─── HERO ────────────────────────────────────────────────────── */
@@ -138,6 +143,30 @@ a:hover {
 .hero .links p {
   font-size: 14px;
   color: var(--muted);
+}
+
+.hero .links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.hero .links a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.hero .links a:hover {
+  color: var(--text);
+}
+
+.hero .links a svg {
+  width: 14px;
+  height: 14px;
 }
 
 /* ─── SECTIONS (shared) ───────────────────────────────────────── */
