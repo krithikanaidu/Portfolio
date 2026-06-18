@@ -1,5 +1,5 @@
 const skillCategories = [
-  { category: "Mobile", skills: ["Flutter", "Firebase", "Dart"] },
+  { category: "Mobile Development", skills: ["Flutter", "Firebase", "Dart"] },
   { category: "Frontend", skills: ["React", "Next.js", "TypeScript", "Vite"] },
   { category: "Backend", skills: ["Node.js", "Express.js", "Python", "FastAPI"] },
   { category: "Database", skills: ["MongoDB", "PostgreSQL", "Firebase Firestore"] },

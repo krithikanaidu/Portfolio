@@ -407,14 +407,14 @@ a:hover {
 }
 
 .github-activity h3 {
-  font-size: 20px;          /* bigger, like the screenshot */
-  font-weight: 400;         /* lighter weight */
-  color: var(--text);       /* white-ish, not muted */
-  text-transform: none;     /* no uppercase */
-  letter-spacing: 0;        /* no tracking */
+  font-size: 20px;          
+  font-weight: 400;         
+  color: var(--text);      
+  text-transform: none;     
+  letter-spacing: 0;        
   margin-bottom: 20px;
-  padding-bottom: 0;        /* no bottom padding */
-  border-bottom: none;      /* no divider line */
+  padding-bottom: 0;       
+  border-bottom: none;      
 }
 
 .github-chart {
