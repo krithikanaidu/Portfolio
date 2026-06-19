@@ -423,3 +423,42 @@ a:hover {
   opacity: 0.9;
   mix-blend-mode: lighten;  /* blends white bg of SVG into dark page */
 }
+
+/* ─── PROJECTS GRID ───────────────────────────────────────────── */
+.Projects .project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* how many columns, how wide? */
+  gap: 1em;                   /* spacing between cards */
+}
+
+/* ─── PROJECT CARD ────────────────────────────────────────────── */
+.project-item {
+  display: block;
+  background: var(--border);          /* try var(--border) first, see how it looks */
+  border-radius: 0.5em;
+  overflow: hidden;       /* keeps the image corners rounded with the card */
+}
+
+.project-item .project-image img {
+  width: 100%;
+  aspect-ratio: 16/9;         /* e.g. 16/9 — keeps all images same shape */
+  object-fit: cover;
+}
+
+.project-header {
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 200;
+  margin: 1.2em;               /* spacing below image, above this */
+}
+
+.project-description {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 1.2em;
+}
+
+/* hover state — title goes accent color on hover, like OS-Themed Portfolio in your screenshot */
+.project-item:hover .project-header {
+  color: var(--accent);
+}

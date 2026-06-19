@@ -10,8 +10,11 @@ import GetInTouch from '../pages/GetInTouch'
 import ExperienceItem from '../components/ExperienceItem'
 import SkillsSection from '../components/SkillsSection'
 import GithubActivity from '../components/GithubActivity'
+import Projects from '../components/Projects'
+import neuroguardImage from '../assets/neuroguard.png'
 import idmsLogo from '../assets/idms_logo.jpg'
 import csiLogo from '../assets/csi_logo.PNG'
+
 import '../style/App.css'
 
 const experiences = [
@@ -50,6 +53,21 @@ const experiences = [
   },
 ];
 
+const projects = [
+  {
+    name: "Neuroguard",
+    description: "this is project description",
+    image: neuroguardImage,
+    slug: "neuroguard"
+  },
+  {
+    name: "Neuroguard",
+    description: "this is project description",
+    image: neuroguardImage,
+    slug: "neuroguard"
+  },
+  
+]
 
 function App() {
 
@@ -117,6 +135,11 @@ function Home() {
       {/* PROJECTS */}
       <div className="Projects">
         <h3>Projects</h3>
+        <div className="project-grid">
+          {projects.map((exp, i) => (
+            <Projects key={i} {...exp} />
+          ))}
+        </div>
       </div>
 
       {/* SKILLS */}
