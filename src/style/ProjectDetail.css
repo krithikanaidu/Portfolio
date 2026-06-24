@@ -1,0 +1,179 @@
+.project-detail {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+  color: #d4d4d8;
+}
+
+.project-detail-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 2.75rem;
+  color: #e05c2a;
+  margin-bottom: 0.75rem;
+}
+
+.project-detail-bio {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  color: #a1a1aa;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.tag {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  color: #d4d4d8;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+}
+
+/* Image with glow */
+.project-detail-image-wrapper {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  background: radial-gradient(circle at 20% 30%, rgba(224, 92, 42, 0.35), transparent 60%),
+              radial-gradient(circle at 80% 70%, rgba(60, 140, 110, 0.25), transparent 60%);
+  padding: 2rem;
+}
+
+.project-detail-image {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Buttons */
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+  background: #141414;
+  color: #d4d4d8;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.link-button:hover {
+  border-color: #e05c2a;
+  color: #e05c2a;
+}
+
+.link-button.primary {
+  border-color: #e05c2a;
+  color: #e05c2a;
+}
+
+/* Sections */
+.project-section {
+  margin-bottom: 2.5rem;
+}
+
+.section-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.6rem;
+  color: #f4f4f5;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #2a2a2a;
+  margin-bottom: 1rem;
+}
+
+.project-section p {
+  line-height: 1.75;
+  color: #b4b4b8;
+}
+
+/* Bullet lists */
+.bullet-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bullet-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  line-height: 1.6;
+  color: #b4b4b8;
+}
+
+.bullet-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #e05c2a;
+}
+
+.bullet-list li strong {
+  color: #f4f4f5;
+}
+
+/* Next project card */
+.next-project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #141414;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: right;
+}
+
+.next-project-card:hover {
+  border-color: #e05c2a;
+}
+
+.next-label {
+  font-size: 0.85rem;
+  color: #a1a1aa;
+}
+
+.next-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.4rem;
+  color: #e05c2a;
+}
+
+/* See all link */
+.see-all-link {
+  display: block;
+  text-align: center;
+  margin-top: 2.5rem;
+  color: #a1a1aa;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+.see-all-link:hover {
+  color: #e05c2a;
+}

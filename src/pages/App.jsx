@@ -11,9 +11,12 @@ import ExperienceItem from '../components/ExperienceItem'
 import SkillsSection from '../components/SkillsSection'
 import GithubActivity from '../components/GithubActivity'
 import Projects from '../components/Projects'
+import ProjectDetail from '../components/ProjectDetail'
 import neuroguardImage from '../assets/neuroguard.png'
 import idmsLogo from '../assets/idms_logo.jpg'
 import csiLogo from '../assets/csi_logo.PNG'
+import { projects } from '../data/project'
+import Footer from "../components/Footer"
 
 import '../style/App.css'
 
@@ -53,22 +56,6 @@ const experiences = [
   },
 ];
 
-const projects = [
-  {
-    name: "Neuroguard",
-    description: "this is project description",
-    image: neuroguardImage,
-    slug: "neuroguard"
-  },
-  {
-    name: "Neuroguard",
-    description: "this is project description",
-    image: neuroguardImage,
-    slug: "neuroguard"
-  },
-  
-]
-
 function App() {
 
 
@@ -81,7 +68,7 @@ function App() {
         <nav className="navbar">
           <div className="navbar-left">
             <a href="/">Home</a>
-            <a href="/">Projects</a>
+            <a href="#project-grid">Projects</a>
             <a href="https://substack.com/@justanotherdork">Blogs</a>
           </div>
           <div className="navbar-right">
@@ -97,6 +84,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<GetInTouch />} />
+          <Route path="/projects/:slug" element={<ProjectDetail />} />
         </Routes>
 
       </div>
@@ -136,8 +124,8 @@ function Home() {
       <div className="Projects">
         <h3>Projects</h3>
         <div className="project-grid">
-          {projects.map((exp, i) => (
-            <Projects key={i} {...exp} />
+          {projects.map((proj, i) => (
+            <Projects key={i} {...proj} />
           ))}
         </div>
       </div>
@@ -151,9 +139,7 @@ function Home() {
       <GithubActivity />
 
       {/* FOOTER */}
-      <div className="Footer">
-        <h3>Footer</h3>
-      </div>
+      <Footer />
     </>
   )
 }
