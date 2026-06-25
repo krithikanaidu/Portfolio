@@ -66,16 +66,16 @@ function ProjectDetail() {
             <section className="project-section">
                 <h2 className="section-title">Overview</h2>
 
-                <p>{project.overview.split('\n\n').map((para, i) => (
-                    <p key={i}><br />{para}</p>
-                ))}</p>
+                {project.overview.split('\n\n').map((para, i) => (
+                    <p key={i}>{para}</p>
+                ))}
             </section>
 
             <section className="project-section">
                 <h2 className="section-title">Problem</h2>
-                <p>{project.problem.split('\n\n').map((para, i) => (
-                    <p key={i}><br />{para}</p>
-                ))}</p>
+                {project.problem.split('\n\n').map((para, i) => (
+                    <p key={i}>{para}</p>
+                ))}
             </section>
 
             <section className="project-section">

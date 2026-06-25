@@ -68,13 +68,13 @@ function App() {
         <nav className="navbar">
           <div className="navbar-left">
             <a href="/">Home</a>
-            <a href="#project-grid">Projects</a>
+            <a href="#projects">Projects</a>
             <a href="https://substack.com/@justanotherdork">Blogs</a>
           </div>
           <div className="navbar-right">
             <a href="https://github.com/krithikanaidu" title="Github"><FaGithub /></a>
             <a href="https://www.linkedin.com/in/krithika-naidu-9a400b299/" title="LinkedIn"><FaLinkedin /></a>
-            <a href="" title="Resume"><IoDocumentAttachSharp /></a>
+            <a href="https://docs.google.com/document/d/1Vi6jF53IX0vliK2WiyCAdYQc3XcgNdQC/edit?usp=sharing&ouid=108688608578395476537&rtpof=true&sd=true" title="Resume"><IoDocumentAttachSharp /></a>
             <a href="mailto:krithikanaidu88@gmail.com" title="Mail"><IoMail /></a>
             <a href="https://substack.com/@justanotherdork" title="Newsletter"><MdNewspaper /></a>
           </div>
@@ -107,7 +107,7 @@ function Home() {
           <p>Soon-to-be CS grad who likes building things and untangling complex bugs. Off-screen you'll find me volunteering or experimenting with live-coding music.</p>
         </div>
         <div className="links">
-          <a href="#resume"><IoDocumentAttachSharp /> Resume</a>
+          <a href="https://docs.google.com/document/d/1Vi6jF53IX0vliK2WiyCAdYQc3XcgNdQC/edit?usp=sharing&ouid=108688608578395476537&rtpof=true&sd=true"><IoDocumentAttachSharp /> Resume</a>
           <Link to="/contact"><IoMail /> Get in touch</Link>
         </div>
       </div>
@@ -123,7 +123,7 @@ function Home() {
       {/* PROJECTS */}
       <div className="Projects">
         <h3>Projects</h3>
-        <div className="project-grid">
+        <div className="project-grid" id='projects'>
           {projects.map((proj, i) => (
             <Projects key={i} {...proj} />
           ))}
