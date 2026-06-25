@@ -1,7 +1,6 @@
 <div align="center">
 
-# Hi, I'm Krithika 👋
-### just a dorky developer
+# Hi, this is  Krithika
 
 [![Live Site](https://img.shields.io/badge/live-site-e05c2a?style=for-the-badge)](https://krithika.github.io/Portfolio/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
@@ -11,10 +10,6 @@
 </div>
 
 ![Portfolio preview](./src/assets/live-demo.gif)
-<!--
-  📸 Drop a screenshot or screen-recording GIF of the live site here.
-  ![Portfolio preview](./preview.gif)
--->
 
 ---
 
