@@ -31,7 +31,7 @@ This is my personal developer portfolio — built to be minimal, dark, and a lit
 - Client-side routing (React Router) with dedicated project detail pages
 - Projects grid linking out to individual `/projects/:slug` pages
 - Dedicated Get in Touch page
-- Links to my [Substack](#), [GitHub](#), and [LinkedIn](#)
+- Links to my [Substack](https://substack.com/@justanotherdork), [GitHub](https://github.com/krithikanaidu), and [LinkedIn](https://www.linkedin.com/in/krithika-naidu-9a400b299/)
 
 ## Tech Stack
 
@@ -89,12 +89,6 @@ src/
 - [X] GitHub contribution calendar
 - [ ] Mobile responsiveness pass
 - [ ] SEO metadata
-
-## Connect
-
-- 📝 Substack — [link](#)
-- 💻 GitHub — [link](#)
-- 💼 LinkedIn — [link](#)
 
 ---
 
