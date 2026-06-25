@@ -2,7 +2,7 @@
 
 # Hi, I'm Krithika (★‿★)
 
-[![Live Site](https://img.shields.io/badge/live-site-e05c2a?style=for-the-badge)](https://krithika.github.io/Portfolio/)
+[![Live Site](https://img.shields.io/badge/live-site-e05c2a?style=for-the-badge)](https://krithikanaidu.github.io/Portfolio/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-Build-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![GitHub Pages](https://img.shields.io/badge/Deployed-GitHub%20Pages-181717?style=for-the-badge&logo=github)](https://pages.github.com/)
