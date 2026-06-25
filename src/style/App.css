@@ -13,6 +13,7 @@
   --font-heading: 'Instrument Serif', serif;
 }
 
+
 /* ─── SELECTION COLOR ─────────────────────────────────────────── */
 ::selection {
   color: #ffffff;
@@ -34,6 +35,10 @@ body {
   font-size: 16px;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 a {
@@ -281,6 +286,13 @@ a:hover {
 .contact button:hover {
   opacity: 0.85;
 }
+
+.form-status {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+.form-status.success { color: #6fcf97; }
+.form-status.error { color: #e05c2a; }
 
 /* ─── EXPERIENCE ──────────────────────────────────────────────── */
 .exp-item {
