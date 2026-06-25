@@ -10,7 +10,6 @@
 
 </div>
 
-![Portfolio Homepage](./src/assets/homepage.png)
 ![Portfolio preview](./src/assets/live-demo.gif)
 <!--
   📸 Drop a screenshot or screen-recording GIF of the live site here.
@@ -23,7 +22,7 @@
 
 This is my personal developer portfolio — built to be minimal, dark, and a little dorky rather than a wall of resume bullet points. It's where I show off what I'm building, what I'm debugging, and what I'm tinkering with outside of class..
 
-**Live site:** [krithika.github.io/Portfolio](https://krithika.github.io/Portfolio/)
+**Live site:** [krithika.github.io/Portfolio](https://krithika.github.io/Portfolio/)...
 **Reference site:** [Dhvanit Monpara/Portfolio](https://www.dhvanitmonpara.in/)
 
 ## Features
