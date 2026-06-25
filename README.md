@@ -1,6 +1,6 @@
 <div align="center">
 
-# Hi, this is  Krithika
+# Hi, I'm Krithika (★‿★)
 
 [![Live Site](https://img.shields.io/badge/live-site-e05c2a?style=for-the-badge)](https://krithika.github.io/Portfolio/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
@@ -17,7 +17,7 @@
 
 This is my personal developer portfolio — built to be minimal, dark, and a little dorky rather than a wall of resume bullet points. It's where I show off what I'm building, what I'm debugging, and what I'm tinkering with outside of class..
 
-**Live site:** [krithika.github.io/Portfolio](https://krithika.github.io/Portfolio/)...
+**Live site:** [krithika.github.io/Portfolio](https://krithikanaidu.github.io/Portfolio/)...
 **Reference site:** [Dhvanit Monpara/Portfolio](https://www.dhvanitmonpara.in/)
 
 ## Features
@@ -26,7 +26,7 @@ This is my personal developer portfolio — built to be minimal, dark, and a lit
 - Client-side routing (React Router) with dedicated project detail pages
 - Projects grid linking out to individual `/projects/:slug` pages
 - Dedicated Get in Touch page
-- Links to my [Substack](https://substack.com/@justanotherdork), [GitHub](https://github.com/krithikanaidu), and [LinkedIn](https://www.linkedin.com/in/krithika-naidu-9a400b299/)
+- Links to my [Substack](https://substack.com/@justanotherdork), [GitHub](https://krithikanaidu.github.io/Portfolio/), and [LinkedIn](https://www.linkedin.com/in/krithika-naidu-9a400b299/)
 
 ## Tech Stack
 
@@ -43,7 +43,7 @@ This is my personal developer portfolio — built to be minimal, dark, and a lit
 
 ```bash
 # clone the repo
-git clone https://github.com/krithika/Portfolio.git
+git clone https://github.com/krithikanaidu/Portfolio.git
 cd Portfolio
 
 # install dependencies
