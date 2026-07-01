@@ -10,7 +10,7 @@ const CACHE_TTL = 15 * 60 * 1000 // 15 min
 // and Top Albums. Valid Last.fm values (this is a Last.fm API
 // requirement, not something we can invent our own strings for):
 //   'overall' | '7day' | '1month' | '3month' | '6month' | '12month'
-const PERIOD = '7day'
+const PERIOD = '1month'
 
 // Human-readable label shown in the UI, derived from PERIOD so the
 // heading text can never drift out of sync with the actual data.
@@ -37,16 +37,21 @@ async function fetchLastFm(method, extraParams = '') {
   return res.json()
 }
 
-// ─── ARTIST AVATAR FALLBACK ─────────────────────────────────────
-// Last.fm's user.gettopartists (and artist.getInfo/search) has returned
-// a generic gray placeholder star instead of real artist photos for
-// years — this is a known, unfixed issue on Last.fm's side, not
-// something wrong in this code. Pulling real photos would mean a
-// third-party API (Deezer blocks direct browser calls via CORS;
-// TheAudioDB's CORS support and free-tier reliability aren't solid
-// enough to depend on for a live site), so instead we generate a
-// simple colored initials avatar — no network call, never breaks.
-const AVATAR_COLORS = ['#e3d473', '#d72e2e', '#0e5047', '#22153c', '#1d2923']
+// ─── ARTIST / ALBUM ARTWORK FALLBACK ────────────────────────────
+// Last.fm returns a fixed placeholder image (same hash for every
+// artist/album that has no real artwork) instead of omitting the
+// field — this is a known, long-unresolved issue on Last.fm's side,
+// confirmed across their own support forum threads from 2019 through
+// 2026, not something wrong in this code. We detect that placeholder
+// (and plain missing/empty URLs) and swap in a generated fallback
+// instead of silently showing Last.fm's blank gray square.
+const LASTFM_PLACEHOLDER_HASH = '2a96cbd8b46e442fc41c2b86b821562f'
+
+function hasRealImage(url) {
+  return Boolean(url) && !url.includes(LASTFM_PLACEHOLDER_HASH)
+}
+
+const AVATAR_COLORS = ['#313131', '#a1a1aa', '#e05c2a', '#1f1f1f', '#511300']
 
 function getInitials(name = '') {
   return name
@@ -57,8 +62,8 @@ function getInitials(name = '') {
     .join('')
 }
 
-// Deterministic color per artist name, so the same artist always
-// gets the same color across renders/reloads (not random each time).
+// Deterministic color per name, so the same artist/album always gets
+// the same color across renders/reloads (not random each time).
 function getAvatarColor(name = '') {
   const hash = [...name].reduce((sum, ch) => sum + ch.charCodeAt(0), 0)
   return AVATAR_COLORS[hash % AVATAR_COLORS.length]
@@ -108,8 +113,8 @@ export default function LastFmStats() {
         // all-time data no matter what you set.
         const [recentData, topArtistData, topAlbumData, infoData] = await Promise.all([
           fetchLastFm('user.getrecenttracks', '&limit=5'),
-          fetchLastFm('user.gettopartists', `&period=${PERIOD}&limit=10`),
-          fetchLastFm('user.gettopalbums', `&period=${PERIOD}&limit=10`),
+          fetchLastFm('user.gettopartists', `&period=${PERIOD}&limit=5`),
+          fetchLastFm('user.gettopalbums', `&period=${PERIOD}&limit=5`),
           fetchLastFm('user.getinfo'),
         ])
 
@@ -255,38 +260,69 @@ export default function LastFmStats() {
 
           <span className="lastfm-label lastfm-label-spaced">Top Albums ({PERIOD_LABEL})</span>
           <ul className="lastfm-album-grid">
-            {topAlbums.map((al, i) => (
-              <li key={i} style={{ animationDelay: `${i * 60}ms` }}>
-                <a href={al.url} target="_blank" rel="noreferrer">
-                  <img src={al.image?.[2]?.['#text']} alt="" />
-                  <div className="lastfm-album-info">
-                    <span className="lastfm-track-name">{al.name}</span>
-                    <span className="lastfm-track-artist">{al.artist?.name}</span>
-                  </div>
-                </a>
-              </li>
-            ))}
+            {topAlbums.map((al, i) => {
+              const imageUrl = al.image?.[2]?.['#text']
+              const hasImage = hasRealImage(imageUrl)
+              // Only render as a link if Last.fm actually gave us a URL.
+              // An empty/missing url is what leads to the dead-click /
+              // 502 page — safer to render a plain (non-clickable) tile.
+              const Tag = al.url ? 'a' : 'div'
+              const linkProps = al.url
+                ? { href: al.url, target: '_blank', rel: 'noreferrer' }
+                : {}
+
+              return (
+                <li key={i} style={{ animationDelay: `${i * 60}ms` }}>
+                  <Tag className="lastfm-tile" {...linkProps}>
+                    {hasImage ? (
+                      <img src={imageUrl} alt="" />
+                    ) : (
+                      <div
+                        className="lastfm-album-avatar"
+                        style={{ background: getAvatarColor(al.name) }}
+                      >
+                        {getInitials(al.name)}
+                      </div>
+                    )}
+                    <div className="lastfm-album-info">
+                      <span className="lastfm-track-name">{al.name}</span>
+                      <span className="lastfm-track-artist">{al.artist?.name}</span>
+                    </div>
+                  </Tag>
+                </li>
+              )
+            })}
           </ul>
           <span className="lastfm-label lastfm-label-spaced">Top Artists ({PERIOD_LABEL})</span>
           <ul className="lastfm-artist-grid">
-            {topArtists.map((ar, i) => (
-              <li key={i} style={{ animationDelay: `${i * 60}ms` }}>
-                <a href={ar.url} target="_blank" rel="noreferrer">
-                  {/* Using a generated initials avatar instead of ar.image —
-                      see the AVATAR FALLBACK comment near the top of this
-                      file for why Last.fm's artist images can't be used. */}
-                  <div
-                    className="lastfm-artist-avatar"
-                    style={{ background: getAvatarColor(ar.name) }}
-                  >
-                    {getInitials(ar.name)}
-                  </div>
-                  <div className="lastfm-artist-info">
-                    <span className="lastfm-artist">{ar.name}</span>
-                  </div>
-                </a>
-              </li>
-            ))}
+            {topArtists.map((ar, i) => {
+              const imageUrl = ar.image?.[2]?.['#text']
+              const hasImage = hasRealImage(imageUrl)
+              const Tag = ar.url ? 'a' : 'div'
+              const linkProps = ar.url
+                ? { href: ar.url, target: '_blank', rel: 'noreferrer' }
+                : {}
+
+              return (
+                <li key={i} style={{ animationDelay: `${i * 60}ms` }}>
+                  <Tag className="lastfm-tile" {...linkProps}>
+                    {hasImage ? (
+                      <img src={imageUrl} alt="" />
+                    ) : (
+                      <div
+                        className="lastfm-artist-avatar"
+                        style={{ background: getAvatarColor(ar.name) }}
+                      >
+                        {getInitials(ar.name)}
+                      </div>
+                    )}
+                    <div className="lastfm-artist-info">
+                      <span className="lastfm-artist">{ar.name}</span>
+                    </div>
+                  </Tag>
+                </li>
+              )
+            })}
           </ul>
         </div>
       )}
