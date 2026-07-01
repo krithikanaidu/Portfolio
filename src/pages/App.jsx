@@ -16,6 +16,8 @@ import neuroguardImage from '../assets/neuroguard.png'
 import idmsLogo from '../assets/idms_logo.jpg'
 import csiLogo from '../assets/csi_logo.PNG'
 import { projects } from '../data/project'
+import LastFmStats from '../components/LastFmStats'
+import MusicStats from './MusicStats';
 import Footer from "../components/Footer"
 
 import '../style/App.css'
@@ -85,6 +87,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<GetInTouch />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
+          <Route path="/music-stats" element={<MusicStats />} />
         </Routes>
 
       </div>
@@ -109,6 +112,7 @@ function Home() {
         <div className="links">
           <a href="https://docs.google.com/document/d/1Vi6jF53IX0vliK2WiyCAdYQc3XcgNdQC/edit?usp=sharing&ouid=108688608578395476537&rtpof=true&sd=true"><IoDocumentAttachSharp /> Resume</a>
           <Link to="/contact"><IoMail /> Get in touch</Link>
+          <Link to="/music-stats"><IoMail /> mORE</Link>
         </div>
       </div>
 
