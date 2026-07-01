@@ -242,6 +242,8 @@
   flex-shrink: 0;
 }
 
+
+
 /* ─── OVERALL STATS ───────────────────────────────────────────── */
 .lastfm-overall {
   margin-top: 32px;
@@ -329,6 +331,57 @@
 }
 
 .lastfm-album-info .lastfm-track-artist {
+  font-size: 10px;
+}
+.lastfm-artist-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.lastfm-artist-grid li {
+  opacity: 0;
+  animation: lastfm-fade-in 0.4s ease forwards;
+}
+
+.lastfm-artist-grid a {
+  display: block;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.lastfm-artist-grid a:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(224, 92, 42, 0.15);
+}
+
+/* Generated initials avatar — replaces Last.fm's broken artist images.
+   Circular so it visually reads as a "profile photo" slot without
+   pretending to be one; color comes inline per-artist via JS. */
+.lastfm-artist-avatar {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.lastfm-artist-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 6px 2px 0;
+}
+
+.lastfm-artist-info .lastfm-artist {
   font-size: 10px;
 }
 

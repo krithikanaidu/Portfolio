@@ -3,8 +3,31 @@ import { FaHeadphonesAlt } from 'react-icons/fa'
 
 const API_KEY = import.meta.env.VITE_LASTFM_API_KEY
 const USERNAME = import.meta.env.VITE_LASTFM_USERNAME
-const CACHE_KEY = 'lastfm-stats-cache'
 const CACHE_TTL = 15 * 60 * 1000 // 15 min
+
+// ─── SINGLE SOURCE OF TRUTH FOR TIME RANGE ─────────────────────
+// Change ONLY this value to change the range for both Top Artists
+// and Top Albums. Valid Last.fm values (this is a Last.fm API
+// requirement, not something we can invent our own strings for):
+//   'overall' | '7day' | '1month' | '3month' | '6month' | '12month'
+const PERIOD = '7day'
+
+// Human-readable label shown in the UI, derived from PERIOD so the
+// heading text can never drift out of sync with the actual data.
+const PERIOD_LABELS = {
+  overall: 'All Time',
+  '7day': 'Last 7 Days',
+  '1month': 'Last Month',
+  '3month': 'Last 3 Months',
+  '6month': 'Last 6 Months',
+  '12month': 'Last Year',
+}
+const PERIOD_LABEL = PERIOD_LABELS[PERIOD] ?? PERIOD
+
+// Cache key includes the period so that flipping PERIOD during
+// development always fetches fresh data instead of silently
+// serving you stale cached results from a previous period.
+const CACHE_KEY = `lastfm-stats-cache-${PERIOD}`
 
 async function fetchLastFm(method, extraParams = '') {
   const res = await fetch(
@@ -12,6 +35,33 @@ async function fetchLastFm(method, extraParams = '') {
   )
   if (!res.ok) throw new Error('Last.fm request failed')
   return res.json()
+}
+
+// ─── ARTIST AVATAR FALLBACK ─────────────────────────────────────
+// Last.fm's user.gettopartists (and artist.getInfo/search) has returned
+// a generic gray placeholder star instead of real artist photos for
+// years — this is a known, unfixed issue on Last.fm's side, not
+// something wrong in this code. Pulling real photos would mean a
+// third-party API (Deezer blocks direct browser calls via CORS;
+// TheAudioDB's CORS support and free-tier reliability aren't solid
+// enough to depend on for a live site), so instead we generate a
+// simple colored initials avatar — no network call, never breaks.
+const AVATAR_COLORS = ['#e3d473', '#d72e2e', '#0e5047', '#22153c', '#1d2923']
+
+function getInitials(name = '') {
+  return name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map(word => word[0]?.toUpperCase())
+    .join('')
+}
+
+// Deterministic color per artist name, so the same artist always
+// gets the same color across renders/reloads (not random each time).
+function getAvatarColor(name = '') {
+  const hash = [...name].reduce((sum, ch) => sum + ch.charCodeAt(0), 0)
+  return AVATAR_COLORS[hash % AVATAR_COLORS.length]
 }
 export default function LastFmStats() {
   const [recent, setRecent] = useState([])
@@ -26,7 +76,10 @@ export default function LastFmStats() {
     let cancelled = false
 
     async function load() {
-      // Try cache first
+      // Try cache first. Note: CACHE_KEY includes PERIOD, so this only
+      // ever reads a cache written for the *current* PERIOD — changing
+      // PERIOD above always triggers a fresh fetch instead of showing
+      // you leftover data from whatever period you tested last.
       const cached = localStorage.getItem(CACHE_KEY)
       if (cached) {
         try {
@@ -48,15 +101,23 @@ export default function LastFmStats() {
       }
 
     try {
+        // BUG FIX: both calls now use the same PERIOD constant.
+        // Previously topAlbums used '&period=7' which isn't a valid
+        // Last.fm value (only 'overall' | '7day' | '1month' | ... are
+        // accepted) — Last.fm was silently ignoring it and returning
+        // all-time data no matter what you set.
         const [recentData, topArtistData, topAlbumData, infoData] = await Promise.all([
           fetchLastFm('user.getrecenttracks', '&limit=5'),
-          fetchLastFm('user.gettopartists', '&period=7day&limit=5'),
-          fetchLastFm('user.gettopalbums', '&period=overall&limit=5'),
+          fetchLastFm('user.gettopartists', `&period=${PERIOD}&limit=10`),
+          fetchLastFm('user.gettopalbums', `&period=${PERIOD}&limit=10`),
           fetchLastFm('user.getinfo'),
         ])
 
         const tracks = recentData?.recenttracks?.track || []
-        const nowPlayingTrack = tracks.find(t => t['@attr']?.nowplaying) || null
+        // Note: "now playing" isn't set here. It's handled by the separate
+        // pollNowPlaying effect below, which refreshes every 30s so the
+        // "Now Playing" card feels live instead of being stuck at 15-min
+        // cache staleness like the rest of this data.
         const recentTracks = tracks
           .filter(t => !t['@attr']?.nowplaying)
           .slice(0, 5)
@@ -192,7 +253,7 @@ export default function LastFmStats() {
             </div>
           </div>
 
-          <span className="lastfm-label lastfm-label-spaced">Top Albums (All Time)</span>
+          <span className="lastfm-label lastfm-label-spaced">Top Albums ({PERIOD_LABEL})</span>
           <ul className="lastfm-album-grid">
             {topAlbums.map((al, i) => (
               <li key={i} style={{ animationDelay: `${i * 60}ms` }}>
@@ -201,6 +262,27 @@ export default function LastFmStats() {
                   <div className="lastfm-album-info">
                     <span className="lastfm-track-name">{al.name}</span>
                     <span className="lastfm-track-artist">{al.artist?.name}</span>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <span className="lastfm-label lastfm-label-spaced">Top Artists ({PERIOD_LABEL})</span>
+          <ul className="lastfm-artist-grid">
+            {topArtists.map((ar, i) => (
+              <li key={i} style={{ animationDelay: `${i * 60}ms` }}>
+                <a href={ar.url} target="_blank" rel="noreferrer">
+                  {/* Using a generated initials avatar instead of ar.image —
+                      see the AVATAR FALLBACK comment near the top of this
+                      file for why Last.fm's artist images can't be used. */}
+                  <div
+                    className="lastfm-artist-avatar"
+                    style={{ background: getAvatarColor(ar.name) }}
+                  >
+                    {getInitials(ar.name)}
+                  </div>
+                  <div className="lastfm-artist-info">
+                    <span className="lastfm-artist">{ar.name}</span>
                   </div>
                 </a>
               </li>

@@ -4,6 +4,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { IoDocumentAttachSharp } from "react-icons/io5";
 import { IoMail } from "react-icons/io5";
 import { MdNewspaper } from "react-icons/md";
+import { FaHeadphonesAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import CursorSparks from '../components/CursorSparks'
 import GetInTouch from '../pages/GetInTouch'
@@ -112,7 +113,7 @@ function Home() {
         <div className="links">
           <a href="https://docs.google.com/document/d/1Vi6jF53IX0vliK2WiyCAdYQc3XcgNdQC/edit?usp=sharing&ouid=108688608578395476537&rtpof=true&sd=true"><IoDocumentAttachSharp /> Resume</a>
           <Link to="/contact"><IoMail /> Get in touch</Link>
-          <Link to="/music-stats"><IoMail /> mORE</Link>
+          <Link to="/music-stats"><FaHeadphonesAlt /> mORE</Link>
         </div>
       </div>
 
